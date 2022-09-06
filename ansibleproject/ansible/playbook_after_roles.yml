@@ -1,0 +1,20 @@
+
+---
+
+  - hosts: webservers
+    become: yes
+    roles:
+      - nfs
+
+  - hosts: dbservers
+    become: yes
+    roles:
+      - copyfile
+#      - adduser
+#
+# - hosts: testservers
+#    become: yes
+#    roles:
+#      - cron
+#      - httpd
+#

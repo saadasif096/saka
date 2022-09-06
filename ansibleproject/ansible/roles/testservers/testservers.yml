@@ -1,0 +1,22 @@
+---
+  - name: testservers
+    hosts: testservers
+    become: yes
+    tasks:
+      - name: update installed packages
+        command: yum update -y
+      - name: cron task
+        cron:
+          name: "cron update"
+          special_time: daily
+          job:  yum update -y
+      - name: download httpd
+        yum:
+          name: httpd
+          state: latest
+      - name: change line in httpd.conf file
+        lineinfile:
+          path: /etc/httpd/conf/httpd.conf
+          regexp: "ServerAdmin root@localhost"
+          line: ServerAdmin saka@sakasama
+

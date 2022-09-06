@@ -1,0 +1,13 @@
+---
+  - name: dbservers
+    hosts: dbservers
+    become: yes
+    tasks:
+      - name: copy file from master
+        copy:
+          src: /etc/ansible/test/test.txt
+          dest: /etc/ansible/test/test.txt
+      - name: create new user named saka
+        user:
+          name: saka
+
